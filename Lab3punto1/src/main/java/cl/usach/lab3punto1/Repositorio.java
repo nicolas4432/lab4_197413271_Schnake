@@ -25,17 +25,7 @@ public class Repositorio {
      * Agrega crea y archivos a la zona del Workspace
      * @param repositorio Repositorio que se esta utilizando
      */
-    public void addWork(Repositorio repositorio){
-        Scanner in = new Scanner(System.in);                        //Variable para pedir datos por consola
-        
-        System.out.println("");
-        //Se pide el nombre del archivo
-        System.out.println("Introdusca nombre del archivo:");       
-        String nombre = in.nextLine();
-        //Se pide el contenido del archivo
-        System.out.println("Ingrese el contenido:");                
-        String contenido = in.nextLine();
-        //Se agrega el archivo al Workspace
+    public void addWork(Repositorio repositorio, String nombre, String contenido){        
         repositorio.workspace.agregarArchivo(nombre, contenido);    
     }
     /**

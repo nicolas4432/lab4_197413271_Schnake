@@ -6,6 +6,8 @@
 
 package cl.usach.lab3punto1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nico4
@@ -114,7 +116,12 @@ public class NueArcVent extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        
+        VariablesGlobales.repo.addWork(VariablesGlobales.repo, txtNombre.getText(), txtContenido.getText());   
+        
+        JOptionPane.showMessageDialog(null, "Archivo creado correctamente.");
+        
+        this.setVisible(false);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
