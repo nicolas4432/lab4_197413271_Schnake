@@ -33,12 +33,62 @@ public class Repositorio {
      * @param repositorio Repositorio que se esta utilizando
      */
     public void add(Repositorio repositorio, TextoArchivo archivo){
-        //Creo nuevo archivo
-        TextoArchivo archivoNuevo = new TextoArchivo();                         
-        archivoNuevo.datoSet(archivo.datoGet(archivo, "fecha"), archivo.datoGet(archivo, "nombre"), archivo.datoGet(archivo, "contenido"));
-        //Y se agrega al index
-        repositorio.index.listaArchivos.add(archivoNuevo);
-    }
+//        //Creo nuevo archivo
+//        TextoArchivo archivoNuevo = new TextoArchivo();                         
+//        archivoNuevo.datoSet(archivo.datoGet(archivo, "fecha"), archivo.datoGet(archivo, "nombre"), archivo.datoGet(archivo, "contenido"));
+//        //Y se agrega al index
+//        repositorio.index.listaArchivos.add(archivoNuevo);
+        
+        String nombreArchivo = "";                                  //Nombre del archivo
+        int largoIndex = 0;                                         //Largo del Index
+        int estabaEnIndex;                                          //Verificador si el archivo se encuentra en el index
+        
+        
+        nombreArchivo = archivo.datoGet(archivo, "nombre");
+
+        //Recoror cada archivo en la lista de index
+        for (TextoArchivo archivoEnLista : VariablesGlobales.repo.workspace.listaArchivos){
+            estabaEnIndex = 0;
+            //Si el archivo ingresado esta
+            if(nombreArchivo.equals(archivoEnLista.datoGet(archivoEnLista, "nombre"))){
+                //Recorro los archivos del index 
+                for (TextoArchivo archivoEnListaI : VariablesGlobales.repo.index.listaArchivos){
+                   largoIndex = largoIndex + 1;  
+                    //Si el archivo esta en index
+                    if(nombreArchivo.equals(archivoEnListaI.datoGet(archivoEnListaI, "nombre"))){
+                        estabaEnIndex = 1;
+                        //y el contenido es distinto
+                        if(!(archivoEnLista.datoGet(archivoEnLista, "contenido")).equals(archivoEnListaI.datoGet(archivoEnListaI, "contenido"))){
+                            VariablesGlobales.repo.index.listaArchivos.remove(archivoEnListaI);
+                            //Creo nuevo archivo
+                            TextoArchivo archivoNuevo = new TextoArchivo();                         
+                            archivoNuevo.datoSet(archivo.datoGet(archivo, "fecha"), archivo.datoGet(archivo, "nombre"), archivo.datoGet(archivo, "contenido"));
+                            //Y se agrega al index
+                            repositorio.index.listaArchivos.add(archivoNuevo);
+
+                            break;
+                        }
+                        break;
+                    }
+                }
+                //Si el archivo no estaba en el index se agrega
+                if (estabaEnIndex == 0){                        
+                    //Creo nuevo archivo
+                    TextoArchivo archivoNuevo = new TextoArchivo();                         
+                    archivoNuevo.datoSet(archivo.datoGet(archivo, "fecha"), archivo.datoGet(archivo, "nombre"), archivo.datoGet(archivo, "contenido"));
+                    //Y se agrega al index
+                    repositorio.index.listaArchivos.add(archivoNuevo);
+
+                    break;
+                }
+            }
+        }        
+    }        
+        
+        
+        
+        
+    
     /**
      * Crea un commit y se agrega a al local repository
      * @param repositorio Repositorio que se esta utilizando

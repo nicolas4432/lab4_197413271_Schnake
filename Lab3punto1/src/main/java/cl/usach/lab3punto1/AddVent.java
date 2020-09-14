@@ -106,7 +106,6 @@ public class AddVent extends javax.swing.JFrame {
         for( int indice : lstArchivosWorkspace.getSelectedIndices()){
             VariablesGlobales.repo.add(VariablesGlobales.repo, VariablesGlobales.repo.workspace.listaArchivos.get(indice));
         }
-        int p = 3; 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
