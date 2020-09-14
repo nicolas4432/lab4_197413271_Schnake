@@ -32,57 +32,12 @@ public class Repositorio {
      * Agrega archivos del Workspace al Index
      * @param repositorio Repositorio que se esta utilizando
      */
-    public void add(Repositorio repositorio){
-        Scanner in = new Scanner(System.in);                        //Variable para pedir datos por consola
-        String nombreArchivo = "";                                  //Nombre del archivo
-        int largoIndex = 0;                                         //Largo del Index
-        int estabaEnIndex;                                          //Verificador si el archivo se encuentra en el index
-        
-        System.out.println("");
-        System.out.println("Archivos actuales del Workspace:");
-        
-        //Se muestran todos los archivos del workspace
-        for (TextoArchivo archivoEnLista : repositorio.workspace.listaArchivos){             
-            System.out.println("-" + archivoEnLista.datoGet(archivoEnLista, "nombre"));
-        } 
-        System.out.println("Ingrese nombre archivos, para salir escribir 00");
-        //Mientras no se ingrese la opcion de salida 00 se sigue ejecutando la funcion 
-        while(!"00".equals(nombreArchivo)){
-            nombreArchivo = in.nextLine();
-            //Recoror cada archivo en la lista de index
-            for (TextoArchivo archivoEnLista : repositorio.workspace.listaArchivos){
-                estabaEnIndex = 0;
-                //Si el archivo ingresado esta
-                if(nombreArchivo.equals(archivoEnLista.datoGet(archivoEnLista, "nombre"))){
-                    //Recorro los archivos del index 
-                    for (TextoArchivo archivoEnListaI : repositorio.index.listaArchivos){
-                       largoIndex = largoIndex + 1;  
-                        //Si el archivo esta en index
-                        if(nombreArchivo.equals(archivoEnListaI.datoGet(archivoEnListaI, "nombre"))){
-                            estabaEnIndex = 1;
-                            //y el contenido es distinto
-                            if(!(archivoEnLista.datoGet(archivoEnLista, "contenido")).equals(archivoEnListaI.datoGet(archivoEnListaI, "contenido"))){
-                                repositorio.index.listaArchivos.remove(archivoEnListaI);
-                                //Creo nuevo archivo
-                                TextoArchivo archivo = new TextoArchivo();                         
-                                archivo.datoSet(archivoEnLista.datoGet(archivoEnLista, "fecha"), archivoEnLista.datoGet(archivoEnLista, "nombre"), archivoEnLista.datoGet(archivoEnLista, "contenido"));
-                                //Y se agrega al index
-                                repositorio.index.listaArchivos.add(archivo);
-                                break;
-                            }
-                            break;
-                        }
-                    }
-                    //Si el archivo no estaba en el index se agrega
-                    if (estabaEnIndex == 0){                        
-                        TextoArchivo archivo = new TextoArchivo();                    
-                        archivo.datoSet(archivoEnLista.datoGet(archivoEnLista, "fecha"), archivoEnLista.datoGet(archivoEnLista, "nombre"), archivoEnLista.datoGet(archivoEnLista, "contenido"));
-                        repositorio.index.listaArchivos.add(archivo);
-                        break;
-                    }
-                }
-            }        
-        }   
+    public void add(Repositorio repositorio, TextoArchivo archivo){
+        //Creo nuevo archivo
+        TextoArchivo archivoNuevo = new TextoArchivo();                         
+        archivoNuevo.datoSet(archivo.datoGet(archivo, "fecha"), archivo.datoGet(archivo, "nombre"), archivo.datoGet(archivo, "contenido"));
+        //Y se agrega al index
+        repositorio.index.listaArchivos.add(archivoNuevo);
     }
     /**
      * Crea un commit y se agrega a al local repository

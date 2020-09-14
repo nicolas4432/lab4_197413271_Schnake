@@ -117,6 +117,8 @@ public class NueArcVent extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         
+        if(txtNombre.getText().compareTo("") == 0) return;
+        
         VariablesGlobales.repo.addWork(VariablesGlobales.repo, txtNombre.getText(), txtContenido.getText());   
         
         JOptionPane.showMessageDialog(null, "Archivo creado correctamente.");

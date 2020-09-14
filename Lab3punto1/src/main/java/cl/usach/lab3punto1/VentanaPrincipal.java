@@ -186,6 +186,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         }
         
+        if(VariablesGlobales.repo.workspace.listaArchivos.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe agregar archivos al Workspace primero.");
+            return;
+        }
+                
         
         (new AddVent()).setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed

@@ -1,11 +1,24 @@
 package cl.usach.lab3punto1;
 
+import java.awt.Component;
+import javax.swing.DefaultListModel;
+
 public class AddVent extends javax.swing.JFrame {
 
     /** Creates new form AddVent */
     public AddVent() {
         initComponents();
         setDefaultCloseOperation(AddVent.DISPOSE_ON_CLOSE);
+        
+        lstArchivosWorkspace.removeAll();
+        
+        DefaultListModel<String> model = new DefaultListModel<>();
+        lstArchivosWorkspace.setModel(model);
+        
+        for(int i = 0 ; i < VariablesGlobales.repo.workspace.listaArchivos.size() ; i++)
+        {
+            model.addElement(VariablesGlobales.repo.workspace.listaArchivos.get(i).nombre);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -19,7 +32,7 @@ public class AddVent extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        lstArchivosWorkspace = new javax.swing.JList<>();
         btnAgregar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -29,14 +42,19 @@ public class AddVent extends javax.swing.JFrame {
 
         jLabel1.setText("Seleccione los archivos que desea agregar al Index");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        lstArchivosWorkspace.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(lstArchivosWorkspace);
 
         btnAgregar.setText("Agregar Archivos");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +100,15 @@ public class AddVent extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        lstArchivosWorkspace.getSelectedIndices();
+        
+        for( int indice : lstArchivosWorkspace.getSelectedIndices()){
+            VariablesGlobales.repo.add(VariablesGlobales.repo, VariablesGlobales.repo.workspace.listaArchivos.get(indice));
+        }
+        int p = 3; 
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -121,8 +148,8 @@ public class AddVent extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> lstArchivosWorkspace;
     // End of variables declaration//GEN-END:variables
 
 }
