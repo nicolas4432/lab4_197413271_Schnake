@@ -64,7 +64,7 @@ public class Repositorio {
                             TextoArchivo archivoNuevo = new TextoArchivo();                         
                             archivoNuevo.datoSet(archivo.datoGet(archivo, "fecha"), archivo.datoGet(archivo, "nombre"), archivo.datoGet(archivo, "contenido"));
                             //Y se agrega al index
-                            repositorio.index.listaArchivos.add(archivoNuevo);
+                            VariablesGlobales.repo.index.listaArchivos.add(archivoNuevo);
 
                             break;
                         }
@@ -77,7 +77,7 @@ public class Repositorio {
                     TextoArchivo archivoNuevo = new TextoArchivo();                         
                     archivoNuevo.datoSet(archivo.datoGet(archivo, "fecha"), archivo.datoGet(archivo, "nombre"), archivo.datoGet(archivo, "contenido"));
                     //Y se agrega al index
-                    repositorio.index.listaArchivos.add(archivoNuevo);
+                    VariablesGlobales.repo.index.listaArchivos.add(archivoNuevo);
 
                     break;
                 }
@@ -93,25 +93,19 @@ public class Repositorio {
      * Crea un commit y se agrega a al local repository
      * @param repositorio Repositorio que se esta utilizando
      */
-    public void commit(Repositorio repositorio){
-        Scanner in = new Scanner(System.in);                        //Variable para pedir datos por consola
+    public void commit(Repositorio repositorio, String autorC, String comentario){
+
         Commit ultimoCommit;                                        //Ultimo commit generado
         int largoIndex = 0;                                         //Largo del index
         int existeDiferencia;                                       //Verificador si exsiste diferencia entre commits
         TextoArchivo archivoDif;                                    //Archivo presente o ausente al comparar commits
         
-        System.out.println("");
-        //Se pide el nombre del autor del commit
-        System.out.println("Ingrese nombre del autor:");
-        String autorC = in.nextLine();
-        //Se pide el comentario
-        System.out.println("Ingrese su comentario:");
-        String comentario = in.nextLine();
+
         //Se inicializa un commit con el nombre del autor y comentario
         Commit nuevoCommit = new Commit(autorC, comentario);
         
         //Copio todos los archivos del index al commit
-        for (TextoArchivo archivoEnListaI : repositorio.index.listaArchivos){
+        for (TextoArchivo archivoEnListaI : VariablesGlobales.repo.index.listaArchivos){
             TextoArchivo archivosCommit = new TextoArchivo();                          
             archivosCommit.datoSet(archivoEnListaI.datoGet(archivoEnListaI, "fecha"), archivoEnListaI.datoGet(archivoEnListaI, "nombre"), archivoEnListaI.datoGet(archivoEnListaI, "contenido"));
             nuevoCommit.listaArchivos.add(archivosCommit);
@@ -119,8 +113,8 @@ public class Repositorio {
         }
         
         //Si la zona local no esta vacia se realiza la busqueda de diferencias con el commit anterior
-        if (!repositorio.local.listaCommits.isEmpty()){
-            ultimoCommit = repositorio.local.listaCommits.get(repositorio.local.listaCommits.size() - 1);
+        if (!VariablesGlobales.repo.local.listaCommits.isEmpty()){
+            ultimoCommit = VariablesGlobales.repo.local.listaCommits.get(repositorio.local.listaCommits.size() - 1);
             //Para cada archivo en el commit viejo
             for (TextoArchivo archivoEnUC : ultimoCommit.listaArchivos){
             //Si el archivo no esta en el nuevo commit se agrega
@@ -165,7 +159,7 @@ public class Repositorio {
             }            
         }
         //Se agrega el nuevo commit
-        repositorio.local.listaCommits.add(nuevoCommit);       
+        VariablesGlobales.repo.local.listaCommits.add(nuevoCommit);       
     }
     /**
      * Copia los commits del local repository al remote 

@@ -6,6 +6,8 @@
 
 package cl.usach.lab3punto1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nico4
@@ -110,7 +112,15 @@ public class CommitVent extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        //Validaciones
+        if(txtAutor.getText().compareTo("") == 0 || txtComentario.getText().compareTo("") == 0) return;
+        
+        
+        VariablesGlobales.repo.commit(VariablesGlobales.repo, txtAutor.getText(), txtComentario.getText());   
+        
+        JOptionPane.showMessageDialog(null, "Commit creado correctamente.");
+        
+        this.setVisible(false);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAutorActionPerformed
