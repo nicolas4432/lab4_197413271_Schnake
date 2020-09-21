@@ -208,6 +208,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe crear un repositorio primero.");
             return;
         }
+        
+        VariablesGlobales.repo.pull(VariablesGlobales.repo);
+        JOptionPane.showMessageDialog(null, "Pull Realizado.");
+        
     }//GEN-LAST:event_pullButtonActionPerformed
 
     private void pushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pushButtonActionPerformed
@@ -215,6 +219,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe crear un repositorio primero.");
             return;
         }
+        VariablesGlobales.repo.push(VariablesGlobales.repo);
+        JOptionPane.showMessageDialog(null, "Push Realizado.");
     }//GEN-LAST:event_pushButtonActionPerformed
 
     private void workButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workButtonActionPerformed

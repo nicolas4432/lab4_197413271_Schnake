@@ -168,11 +168,11 @@ public class Repositorio {
     public void push(Repositorio repositorio){
         Commit comentario;                          //Commit para copiar los commit de local a repo
         //Se recoren todos los commit del repositorio local
-        for (Commit comentarioLocal : repositorio.local.listaCommits){
+        for (Commit comentarioLocal : VariablesGlobales.repo.local.listaCommits){
             //Si el commit no esta en el repositorio remote se agrega
-            if (repositorio.remote.listaCommits.indexOf(comentarioLocal) == -1){
+            if (VariablesGlobales.repo.remote.listaCommits.indexOf(comentarioLocal) == -1){
             comentario = comentarioLocal;
-            repositorio.remote.listaCommits.add(comentario);
+            VariablesGlobales.repo.remote.listaCommits.add(comentario);
             }
         }
     }
@@ -183,12 +183,12 @@ public class Repositorio {
     public void pull(Repositorio repositorio){  
         int existeArchivo;                                  //Verificador si el archivo esta en el workspace
         //Se recorren todos los commit de remote
-        for (Commit commitRemote : repositorio.remote.listaCommits){
+        for (Commit commitRemote : VariablesGlobales.repo.remote.listaCommits){
             //Se recorren todos los archivos del commit
             for (TextoArchivo archivoDeRemote : commitRemote.listaArchivos){
                 existeArchivo = 0;
                 //Se recorren todos los archivos del workspace
-                for (TextoArchivo archivoWork : repositorio.workspace.listaArchivos){
+                for (TextoArchivo archivoWork : VariablesGlobales.repo.workspace.listaArchivos){
                     //Si tienen el mismo archivo mi verificador cambia
                     if (archivoWork.datoGet(archivoWork, "nombre").equals(archivoDeRemote.datoGet(archivoDeRemote, "nombre"))){
                         existeArchivo = 1;
@@ -199,7 +199,7 @@ public class Repositorio {
                 if (existeArchivo == 0){
                     TextoArchivo archivo = new TextoArchivo();                          
                     archivo.datoSet(archivoDeRemote.datoGet(archivoDeRemote, "fecha"), archivoDeRemote.datoGet(archivoDeRemote, "nombre"), archivoDeRemote.datoGet(archivoDeRemote, "contenido"));
-                    repositorio.workspace.listaArchivos.add(archivo);
+                    VariablesGlobales.repo.workspace.listaArchivos.add(archivo);
                 }                
             }
         }       
