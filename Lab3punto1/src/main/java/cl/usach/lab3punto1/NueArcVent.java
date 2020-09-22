@@ -124,6 +124,7 @@ public class NueArcVent extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Archivo creado correctamente.");
         
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**

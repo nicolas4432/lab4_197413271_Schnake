@@ -24,10 +24,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pullButton = new javax.swing.JButton();
         pushButton = new javax.swing.JButton();
         commitButton = new javax.swing.JButton();
-        workButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnWorkspace = new javax.swing.JButton();
+        btnIndex = new javax.swing.JButton();
+        btnLocalRepository = new javax.swing.JButton();
+        btnRemoteRepository = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Repositorio");
@@ -74,31 +74,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        workButton.setText("Workspace");
-        workButton.addActionListener(new java.awt.event.ActionListener() {
+        btnWorkspace.setText("Workspace");
+        btnWorkspace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workButtonActionPerformed(evt);
+                btnWorkspaceActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Index");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnIndex.setText("Index");
+        btnIndex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnIndexActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Local Repository");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnLocalRepository.setText("Local Repository");
+        btnLocalRepository.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnLocalRepositoryActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Remote Repository");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnRemoteRepository.setText("Remote Repository");
+        btnRemoteRepository.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnRemoteRepositoryActionPerformed(evt);
             }
         });
 
@@ -108,13 +108,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(workButton)
+                .addComponent(btnWorkspace)
                 .addGap(38, 38, 38)
-                .addComponent(jButton2)
+                .addComponent(btnIndex)
                 .addGap(33, 33, 33)
-                .addComponent(jButton3)
+                .addComponent(btnLocalRepository)
                 .addGap(37, 37, 37)
-                .addComponent(jButton4)
+                .addComponent(btnRemoteRepository)
                 .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addGap(88, 88, 88)
@@ -138,10 +138,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(128, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(workButton)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnWorkspace)
+                    .addComponent(btnIndex)
+                    .addComponent(btnLocalRepository)
+                    .addComponent(btnRemoteRepository))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(initButton)
@@ -223,33 +223,51 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Push Realizado.");
     }//GEN-LAST:event_pushButtonActionPerformed
 
-    private void workButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workButtonActionPerformed
+    private void btnWorkspaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWorkspaceActionPerformed
         if(VariablesGlobales.repo == null){
             JOptionPane.showMessageDialog(null, "Debe crear un repositorio primero.");
             return;
         }
-    }//GEN-LAST:event_workButtonActionPerformed
+        
+        VentanaWorkspace ventana = new VentanaWorkspace();        
+        ventana.setVisible(true);
+        ventana.setTitle("Workspace");
+        
+        
+    }//GEN-LAST:event_btnWorkspaceActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndexActionPerformed
         if(VariablesGlobales.repo == null){
             JOptionPane.showMessageDialog(null, "Debe crear un repositorio primero.");
             return;
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+        VentanaIndex ventana = new VentanaIndex();        
+        ventana.setVisible(true);
+        ventana.setTitle("Index");        
+    }//GEN-LAST:event_btnIndexActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnLocalRepositoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalRepositoryActionPerformed
         if(VariablesGlobales.repo == null){
             JOptionPane.showMessageDialog(null, "Debe crear un repositorio primero.");
             return;
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        VentanaLocalRepo ventana = new VentanaLocalRepo();        
+        ventana.setVisible(true);
+        ventana.setTitle("Local Repository");        
+    }//GEN-LAST:event_btnLocalRepositoryActionPerformed
+
+    private void btnRemoteRepositoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoteRepositoryActionPerformed
         if(VariablesGlobales.repo == null){
             JOptionPane.showMessageDialog(null, "Debe crear un repositorio primero.");
             return;
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+        
+        VentanaRemoteRepo ventana = new VentanaRemoteRepo();        
+        ventana.setVisible(true);
+        ventana.setTitle("Remote repository");        
+    }//GEN-LAST:event_btnRemoteRepositoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,15 +306,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JButton btnIndex;
+    private javax.swing.JButton btnLocalRepository;
+    private javax.swing.JButton btnRemoteRepository;
+    private javax.swing.JButton btnWorkspace;
     private javax.swing.JButton commitButton;
     private javax.swing.JButton initButton;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton nueArcButton;
     private javax.swing.JButton pullButton;
     private javax.swing.JButton pushButton;
-    private javax.swing.JButton workButton;
     // End of variables declaration//GEN-END:variables
 
 }
